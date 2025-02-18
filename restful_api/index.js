@@ -5,7 +5,7 @@
 
 // Dependencies
 const http = require('http');
-const url = require('url');
+const url = require('node:url');
 
 // The server should respond to all requests with a string
 const server = http.createServer((req, res) => {
@@ -17,6 +17,9 @@ const server = http.createServer((req, res) => {
     const path = parsedUrl.pathname;
     const trimmedPath = path.replace(/^\/+|\/+$/g, '');
 
+    // Get the query string as an object
+    const queryStrinObject = parsedUrl.query
+
     // Get the HTTP method
     const method = req.method.toLowerCase();
 
@@ -24,7 +27,7 @@ const server = http.createServer((req, res) => {
     res.end('Hello World!!\n');
 
     // Log the request path
-    console.log("Request is received on this path: " + trimmedPath + " with HTTP method:" + method);
+    console.log("Request is received on this path: " + trimmedPath + " with HTTP method:" + method + " and with query string object : ", queryStrinObject);
 });
 
 // Start the server, and have it listen on port 3000
