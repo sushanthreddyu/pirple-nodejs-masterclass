@@ -8,22 +8,29 @@ let environments = {};
 
 // Staging Environment
 environments.staging = {
-    'port': 3000,
-    'envName': 'staging'
-}
+  httpPort: 3000,
+  httpsPort: 3001,
+  envName: "staging",
+};
 
 // Production Environment
 environments.production = {
-    'port': 5000,
-    'envName': 'production'
-}
+  httpPort: 6000,
+  httpsPort: 6001,
+  envName: "production",
+};
 
 // Determine which environment was passed an a command-line argument
-let currEnvironment = typeof (process.env.NODE_ENV) == 'string' ? process.env.NODE_ENV.toLowerCase() : '';
-
+let currEnvironment =
+  typeof process.env.NODE_ENV == "string"
+    ? process.env.NODE_ENV.toLowerCase()
+    : "";
 
 // Check that the current environment is one of the environments above, if not, default to staging
-const environmentsToExport = typeof (environments[currEnvironment]) == 'object' ? environments[currEnvironment] : environments.staging;
+const environmentsToExport =
+  typeof environments[currEnvironment] == "object"
+    ? environments[currEnvironment]
+    : environments.staging;
 
 // Export the module
 module.exports = environmentsToExport;
