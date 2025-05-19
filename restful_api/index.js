@@ -10,6 +10,13 @@ const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
 const fs = require("fs");
 const config = require("./config");
+const _data = require("./lib/data");
+
+// TESTING
+// @TODO delete this
+_data.delete("test", "newFile", function(err) {
+  console.log("ERROR: ", err)
+});
 
 // Instantiate the HTTP server
 const httpServer = http.createServer((req, res) => {
@@ -107,12 +114,12 @@ const unifiedServers = (req, res) => {
 let handlers = {};
 
 // Ping handler
-handlers.ping = function (data, callback) {
+handlers.ping = function(data, callback) {
   callback(200);
 };
 
 // Not found handler
-handlers.notFound = function (data, callback) {
+handlers.notFound = function(data, callback) {
   callback(404);
 };
 
